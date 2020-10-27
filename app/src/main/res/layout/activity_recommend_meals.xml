@@ -10,50 +10,66 @@
         android:id="@+id/settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#4AE827"
+        android:background="#FFFFFF"
         android:onClick="OnClick"
         android:text="Settings"
+        android:textColor="#0B0A0A"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.699" />
+        app:layout_constraintVertical_bias="0.976" />
 
     <Button
         android:id="@+id/follow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#096BB6"
+        android:background="#BBD246"
         android:onClick="OnClick"
         android:text="Follow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6" />
+        app:layout_constraintVertical_bias="0.976" />
 
     <Button
         android:id="@+id/meals"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#DD0F0F"
+        android:background="#BBD246"
         android:onClick="OnClick"
         android:text="meals"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="188dp"
-        android:text="Enter Page"
+        android:layout_marginTop="56dp"
+        android:background="#2B2727"
+        android:text="Your Recommendend meals for today"
+        android:textColor="#BBD246"
+        android:textColorHighlight="#BBD246"
+        android:textColorHint="#BBD246"
+        android:textColorLink="#BBD246"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ListView
+        android:layout_width="327dp"
+        android:layout_height="461dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
