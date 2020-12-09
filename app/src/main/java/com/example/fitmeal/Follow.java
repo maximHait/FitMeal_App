@@ -17,13 +17,7 @@ public class Follow extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_follow);
-        MediaPlayer mediaPlayer = new MediaPlayer();
-        File path = android.os.Environment.getExternalStorageDirectory();
-        try {
-            mediaPlayer.setDataSource("C://Users//olgah//Downloads//NBA.mp3");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        mp = MediaPlayer.create(this, R.raw.nba);
     }
     public void btnPlay(View view)
     {
