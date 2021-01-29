@@ -1,11 +1,20 @@
 package com.example.fitmeal;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -17,58 +26,70 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RecommendMeals extends AppCompatActivity {
+
     ListView lstview1;
     ArrayList<Meal> aryMeals=new ArrayList<Meal>();
-    //String[] days = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
-    //Spinner spinner1;
-    TextView textView1;
+
     private AdapterView.OnItemClickListener lst1Listener=new AdapterView.OnItemClickListener() {
         @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+        {
             Toast.makeText(RecommendMeals.this, aryMeals.get(position).toString(), Toast.LENGTH_LONG).show();
+
         }
     };
 
-    //ArrayAdapter<String> aa;
+    private AdapterView.OnItemLongClickListener lst1LongClick = new AdapterView.OnItemLongClickListener()
+    {
+        @Override
+        public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id)
+        {
+            final String [] shareAry = {"Meal 1", "Chicken rice", "calories: 550"};
+            AlertDialog.Builder adb = new AlertDialog.Builder(RecommendMeals.this);
+            adb.setTitle("Information");
+            ArrayAdapter<String> arySharing = new ArrayAdapter<String>(RecommendMeals.this, android.R.layout.simple_list_item_1, shareAry);
+
+            adb.setAdapter(arySharing, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i)
+                {
+                    Toast.makeText(RecommendMeals.this, shareAry[i], Toast.LENGTH_SHORT).show();
+                }
+            });
+            AlertDialog ad = adb.create();
+            ad.getListView().setBackgroundColor(Color.GREEN);
+            ad.show();
+            return true;
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommend_meals);
-        //spinner1 = findViewById(R.id.spinner);
-        textView1 = findViewById(R.id.textView123);
-        //aa = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, days);
-        //spinner1.setAdapter(aa);
-       // spinner1.setOnItemSelectedListener(spinner1Listener);
-        lstview1 = findViewById(R.id.listView1);
+
+        lstview1 = findViewById(R.id.lv);
         getMealData();
-        lstview1 = (ListView) findViewById(R.id.listView1);
         MealAdapter ma = new MealAdapter(this, R.layout.meal, aryMeals);
+
         lstview1.setAdapter(ma);
         lstview1.setOnItemClickListener(lst1Listener);
+        lstview1.setOnItemLongClickListener(lst1LongClick);
+
     }
-/*
-    private AdapterView.OnItemSelectedListener spinner1Listener = new AdapterView.OnItemSelectedListener() {
-        @Override
-        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            textView1.setText(days[position]);
-        }
-
-        @Override
-        public void onNothingSelected(AdapterView<?> parent) {
-
-        }
-
-
-    };*/
 
     public void getMealData() {
-        Meal m = new Meal("Meal 1", "Chicken", 550);
+        Bitmap chicken = BitmapFactory.decodeResource(getResources(), R.drawable.fitmeal);
+        Meal m = new Meal("Meal 1", "Chicken", 550, chicken);
         aryMeals.add(m);
-        Meal m1 = new Meal("Meal 2", "rice", 600);
+        Bitmap RiceMeal = BitmapFactory.decodeResource(getResources(), R.drawable.rice_meal);
+        Meal m1 = new Meal("Meal 2", "rice", 600, RiceMeal);
         aryMeals.add(m1);
-        Meal m2 = new Meal("Meal 3", "broccolie", 620);
+        Bitmap broccoli = BitmapFactory.decodeResource(getResources(), R.drawable.broccoli_meal);
+        Meal m2 = new Meal("Meal 3", "broccolie", 620, broccoli);
         aryMeals.add(m2);
-        Meal m3 = new Meal("Meal 4", "pottato", 500);
+        Bitmap pottato = BitmapFactory.decodeResource(getResources(), R.drawable.pottato);
+        Meal m3 = new Meal("Meal 4", "pottato", 500, pottato);
         aryMeals.add(m3);
     }
 
@@ -81,7 +102,7 @@ public class RecommendMeals extends AppCompatActivity {
                 startActivity(settings);
                 break;
             case R.id.meals:
-                Intent meals1 = new Intent(this, meals.class);
+                Intent meals1 = new Intent(this, ingridiants.class);
                 startActivity(meals1);
                 break;
             case R.id.follow:
@@ -93,4 +114,5 @@ public class RecommendMeals extends AppCompatActivity {
 
         }
     }
+
 }

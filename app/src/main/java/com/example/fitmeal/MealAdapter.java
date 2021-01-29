@@ -1,48 +1,57 @@
 package com.example.fitmeal;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MealAdapter extends ArrayAdapter<Meal>
 {
-    private Context ctx;
+    private Context context;
     private int mealResourceId;
-    private List<Meal>data;
+    private List<Meal> objects;
 
-    public MealAdapter(Context context, int resource, List<Meal> objects)
-    {
+    public MealAdapter(@NonNull Context context, int resource, @NonNull List<Meal> objects) {
         super(context, resource, objects);
-        this.ctx = context;
+        this.context = (RecommendMeals) context;
         this.mealResourceId = resource;
-        this.data = objects;
-
+        this.objects = objects;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater li = (LayoutInflater)this.ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+
+        LayoutInflater li = (LayoutInflater)this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View v = li.inflate(this.mealResourceId, null);
 
-        Meal m = this.data.get(position);
-        TextView tv1 = v.findViewById(R.id.MealName);
+        TextView tv1 = (TextView)v.findViewById(R.id.MealName);
+        TextView tv2 = (TextView)v.findViewById(R.id.calories);
+        TextView tv3 = (TextView)v.findViewById(R.id.Mealid);
+        ImageView Mealimg=(ImageView)v.findViewById(R.id.ivMeal);
+
+        Meal m = objects.get(position);
+
+        Mealimg.setImageBitmap(m.getBitmap());
         tv1.setText(m.getMealName());
-        TextView tv2 = v.findViewById(R.id.calories);
-        tv2.setText(m.getCal());
+        tv2.setText(String.valueOf(m.getCal()));
+        tv3.setText(m.getImgName());
+
         return v;
-        //return super.getView(position, convertView, parent);
     }
 
     @Override
-    public int getCount() {
-        return this.data.size();
+    public int getCount()
+    {
+        return objects.size();
     }
 }

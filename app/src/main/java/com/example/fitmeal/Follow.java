@@ -11,7 +11,7 @@ import android.view.View;
 import java.io.File;
 import java.io.IOException;
 
-public class Follow extends AppCompatActivity {
+public class  Follow extends AppCompatActivity {
     MediaPlayer mp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
