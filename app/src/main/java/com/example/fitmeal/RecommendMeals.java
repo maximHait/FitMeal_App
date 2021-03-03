@@ -34,16 +34,21 @@ public class RecommendMeals extends AppCompatActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id)
         {
-            Toast.makeText(RecommendMeals.this, aryMeals.get(position).toString(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(RecommendMeals.this, aryMeals.get(position).toString(), Toast.LENGTH_LONG).show();
+            String grocery = (String) lstview1.getAdapter().getItem(position);
+            Intent intent = new Intent(lstview1.getContext(), ingridiants.class);
+            lstview1.getContext().startActivity(intent);
+
+            //Intent meals1 = new Intent(this, ingridiants.class);
+            //startActivity(meals1);
 
         }
     };
 
-    private AdapterView.OnItemLongClickListener lst1LongClick = new AdapterView.OnItemLongClickListener()
-    {
+    private AdapterView.OnItemLongClickListener lst1LongClick = new AdapterView.OnItemLongClickListener() {
         @Override
-        public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id)
-        {
+        public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+            /*
             final String [] shareAry = {"Meal 1", "Chicken rice", "calories: 550"};
             AlertDialog.Builder adb = new AlertDialog.Builder(RecommendMeals.this);
             adb.setTitle("Information");
@@ -59,6 +64,11 @@ public class RecommendMeals extends AppCompatActivity {
             AlertDialog ad = adb.create();
             ad.getListView().setBackgroundColor(Color.GREEN);
             ad.show();
+            return true;
+            */
+            String grocery = (String) lstview1.getAdapter().getItem(position);
+            Intent intent = new Intent(lstview1.getContext(), ingridiants.class);
+            lstview1.getContext().startActivity(intent);
             return true;
         }
     };
