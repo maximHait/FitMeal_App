@@ -98,10 +98,10 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                ", height=" + height +
-                ", calorieGoal=" + calorieGoal +
+                "name='" + _name + '\'' +
+                ", age=" + _age +
+                ", height=" + _height +
+                ", calorieGoal=" + _calorieGoal +
                 '}';
     }
 }
