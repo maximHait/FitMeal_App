@@ -22,6 +22,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class RecommendMeals extends AppCompatActivity {
 
     ListView lstview1;
     ArrayList<Meal> aryMeals=new ArrayList<Meal>();
-
+    User user;
     private AdapterView.OnItemClickListener lst1Listener=new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id)
@@ -77,7 +78,7 @@ public class RecommendMeals extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommend_meals);
-
+        user = (User)getIntent().getSerializableExtra("User");
         lstview1 = findViewById(R.id.lv);
         getMealData();
         MealAdapter ma = new MealAdapter(this, R.layout.meal, aryMeals);
@@ -109,14 +110,17 @@ public class RecommendMeals extends AppCompatActivity {
         {
             case (R.id.settings):
                 Intent settings = new Intent(this, Settings.class);
+                settings.putExtra("User", user);
                 startActivity(settings);
                 break;
             case R.id.meals:
                 Intent meals1 = new Intent(this, ingridiants.class);
+                meals1.putExtra("User", user);
                 startActivity(meals1);
                 break;
             case R.id.follow:
                 Intent follow = new Intent(this, Follow.class);
+                follow.putExtra("User", user);
                 startActivity(follow);
                 break;
             default:

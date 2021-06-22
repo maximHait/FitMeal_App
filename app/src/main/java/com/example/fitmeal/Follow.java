@@ -35,7 +35,6 @@ public class  Follow extends AppCompatActivity {
                 break;
             default:
                 break;
-
         }
     }
 }
