@@ -36,7 +36,7 @@ public class MealAdapter extends ArrayAdapter<Meal>
 
         TextView tv1 = (TextView)v.findViewById(R.id.MealName);
         TextView tv2 = (TextView)v.findViewById(R.id.calories);
-        TextView tv3 = (TextView)v.findViewById(R.id.Mealid);
+        TextView tv3 = (TextView)v.findViewById(R.id.price);
         ImageView Mealimg=(ImageView)v.findViewById(R.id.ivMeal);
 
         Meal m = objects.get(position);
@@ -44,7 +44,7 @@ public class MealAdapter extends ArrayAdapter<Meal>
         Mealimg.setImageBitmap(m.getBitmap());
         tv1.setText(m.getMealName());
         tv2.setText(String.valueOf(m.getCal()));
-        tv3.setText(m.getImgName());
+        tv3.setText(m.getPrice());
 
         return v;
     }

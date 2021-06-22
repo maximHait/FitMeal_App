@@ -31,6 +31,7 @@ public class RecommendMeals extends AppCompatActivity {
     ListView lstview1;
     ArrayList<Meal> aryMeals=new ArrayList<Meal>();
     User user;
+    Dal dal = new Dal(this);
     private AdapterView.OnItemClickListener lst1Listener=new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id)
@@ -39,7 +40,6 @@ public class RecommendMeals extends AppCompatActivity {
             //String grocery = (String) lstview1.getAdapter().getItem(position);
             Intent intent = new Intent(lstview1.getContext(), ingridiants.class);
             lstview1.getContext().startActivity(intent);
-
             //Intent meals1 = new Intent(this, ingridiants.class);
             //startActivity(meals1);
 
@@ -79,8 +79,11 @@ public class RecommendMeals extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommend_meals);
         user = (User)getIntent().getSerializableExtra("User");
+
         lstview1 = findViewById(R.id.lv);
-        getMealData();
+
+//        getMealData();
+        aryMeals = dal.getMeals();
         MealAdapter ma = new MealAdapter(this, R.layout.meal, aryMeals);
 
         lstview1.setAdapter(ma);
@@ -89,20 +92,20 @@ public class RecommendMeals extends AppCompatActivity {
 
     }
 
-    public void getMealData() {
-        Bitmap chicken = BitmapFactory.decodeResource(getResources(), R.drawable.fitmeal);
-        Meal m = new Meal("Meal 1", "Chicken", 550, chicken);
-        aryMeals.add(m);
-        Bitmap RiceMeal = BitmapFactory.decodeResource(getResources(), R.drawable.rice_meal);
-        Meal m1 = new Meal("Meal 2", "rice", 600, RiceMeal);
-        aryMeals.add(m1);
-        Bitmap broccoli = BitmapFactory.decodeResource(getResources(), R.drawable.broccoli_meal);
-        Meal m2 = new Meal("Meal 3", "broccolie", 620, broccoli);
-        aryMeals.add(m2);
-        Bitmap pottato = BitmapFactory.decodeResource(getResources(), R.drawable.pottato);
-        Meal m3 = new Meal("Meal 4", "pottato", 500, pottato);
-        aryMeals.add(m3);
-    }
+//    public void getMealData() {
+//        Bitmap chicken = BitmapFactory.decodeResource(getResources(), R.drawable.fitmeal);
+//        Meal m = new Meal("Meal 1", "Chicken", 550, chicken);
+//        aryMeals.add(m);
+//        Bitmap RiceMeal = BitmapFactory.decodeResource(getResources(), R.drawable.rice_meal);
+//        Meal m1 = new Meal("Meal 2", "rice", 600, RiceMeal);
+//        aryMeals.add(m1);
+//        Bitmap broccoli = BitmapFactory.decodeResource(getResources(), R.drawable.broccoli_meal);
+//        Meal m2 = new Meal("Meal 3", "broccolie", 620, broccoli);
+//        aryMeals.add(m2);
+//        Bitmap pottato = BitmapFactory.decodeResource(getResources(), R.drawable.pottato);
+//        Meal m3 = new Meal("Meal 4", "pottato", 500, pottato);
+//        aryMeals.add(m3);
+//    }
 
     public void OnClick(View view) {
 

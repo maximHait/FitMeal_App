@@ -6,23 +6,27 @@ import androidx.annotation.NonNull;
 
 public class Meal
 {
-    private String imgName;
     private String mealName;
-    private int cla;
+    private String ingredients;
+    private int calories;
+    private int veg;
+
+    public int getPrice() {
+        return this.price;
+    }
+
+    private int price;
     private Bitmap bitmap;
 
-    public Meal(String imgName, String name, int cal, Bitmap bitmap)
+    public Meal(String Name, String ingredients, int cal, int veg, int price, Bitmap bitmap)
     {
-        this.cla = cal;
-        this.mealName = name;
-        this.imgName = imgName;
+        this.calories = cal;
+        this.mealName = Name;
+        this.ingredients = ingredients;
+        this.veg = veg;
         this.bitmap = bitmap;
     }
 
-    public String getImgName()
-    {
-        return this.imgName;
-    }
     public void setMealName(String name)
     {
         this.mealName = name;
@@ -33,11 +37,11 @@ public class Meal
     }
     public int getCal()
     {
-        return this.cla;
+        return this.calories;
     }
-    public void setTime(int num)
+    public void setCalories(int num)
     {
-        this.cla = num;
+        this.calories = num;
     }
     public Bitmap getBitmap() {
         return bitmap;
@@ -46,9 +50,8 @@ public class Meal
     @Override
     public String toString() {
         return "Meal{" +
-                "imgName='" + imgName + '\'' +
-                ", mealName='" + mealName + '\'' +
-                ", cla=" + cla +
+                "mealName='" + mealName + '\'' +
+                ", cla=" + calories +
                 '}';
     }
 }

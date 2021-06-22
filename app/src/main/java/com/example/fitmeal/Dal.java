@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
@@ -124,6 +126,20 @@ public class Dal extends SQLiteAssetHelper {
         cursor.close();
         db.close();
     }
+    public int getUserId(String username)
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        String sql_SELECT = "SELECT * FROM Users WHERE username='"+username+"'";
+        Cursor cursor = db.rawQuery(sql_SELECT, null);
+        int id = 0;
+        while (cursor.moveToNext())
+        {
+            id = cursor.getInt(cursor.getColumnIndex("_id"));
+        }
+        cursor.close();
+        db.close();
+        return id;
+    }
 //    public void updateUser(User user) {
 //
 //        // calling a method to get writable database.
@@ -142,5 +158,27 @@ public class Dal extends SQLiteAssetHelper {
 //        db.update(TABLE_NAME, values, "name='" + user.getname() +"'", new String[]{originalCourseName});
 //        db.close();
 //    }
+    public ArrayList<Meal> getMeals()
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        String sql_SELECT = "SELECT * FROM Meals ";
+        ArrayList<Meal> meals = new ArrayList<Meal>();
+        Cursor cursor = db.rawQuery(sql_SELECT, null);
+        while (cursor.moveToNext())
+        {
+            String name = cursor.getString(cursor.getColumnIndex("name"));
+            String ingredients = cursor.getString(cursor.getColumnIndex("ingredients"));
+            int calories = cursor.getInt(cursor.getColumnIndex("calories"));
+            int veg = cursor.getInt(cursor.getColumnIndex("vegeterian"));
+            int price = cursor.getInt(cursor.getColumnIndex("price"));
+            Bitmap img = BitmapFactory.decodeByteArray(cursor.getBlob(cursor.getColumnIndex("img")), 0, cursor.getBlob(cursor.getColumnIndex("img")).length);
+
+            Meal meal = new Meal(name, ingredients, calories, veg, price, img);
+            meals.add(meal);
+        }
+        cursor.close();
+        db.close();
+        return meals.size() == 0 ? null : meals;
+    }
 
 }
