@@ -55,6 +55,11 @@ public class MainActivity extends AppCompatActivity {
                     password.setText("");
                 }
                 break;
+            case R.id.button15:
+                Toast.makeText(getApplicationContext(), "Sign Up", Toast.LENGTH_SHORT).show();
+                Intent sign = new Intent(this, signUp.class);
+                startActivity(sign);
+                break;
             default:
                 break;
         }

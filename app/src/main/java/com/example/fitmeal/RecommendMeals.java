@@ -123,6 +123,10 @@ public class RecommendMeals extends AppCompatActivity {
                 follow.putExtra("User", user);
                 startActivity(follow);
                 break;
+            case R.id.btnLogOut:
+                Intent logout = new Intent(this, MainActivity.class);
+                startActivity(logout);
+                break;
             default:
                 break;
 

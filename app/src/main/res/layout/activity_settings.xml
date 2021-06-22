@@ -6,6 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".Settings">
 
+    <Button
+        android:id="@+id/btnLogOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="10dp"
+        android:background="#BBD246"
+        android:onClick="OnClick"
+        android:text="Log Out"
+        android:textColor="#FBFAFA"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/button14"
+        app:layout_constraintTop_toBottomOf="@+id/radioSex" />
+
     <EditText
         android:id="@+id/heightSettings"
         android:layout_width="wrap_content"
@@ -49,35 +66,35 @@
             android:id="@+id/radioNotActive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
+            android:onClick="onRadioButtonClickedActivity"
             android:text="Not Active" />
 
         <RadioButton
             android:id="@+id/radioSmallActivity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
+            android:onClick="onRadioButtonClickedActivity"
             android:text="Small Activity" />
 
         <RadioButton
             android:id="@+id/radioActive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
+            android:onClick="onRadioButtonClickedActivity"
             android:text="Active" />
 
         <RadioButton
             android:id="@+id/radioVeryActive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
+            android:onClick="onRadioButtonClickedActivity"
             android:text="Very Active" />
 
         <RadioButton
             android:id="@+id/radioAthlete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
+            android:onClick="onRadioButtonClickedActivity"
             android:text="Athlete" />
     </RadioGroup>
 
@@ -111,14 +128,14 @@
             android:id="@+id/radioFemale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
+            android:onClick="onRadioButtonClickedGender"
             android:text="Female" />
 
         <RadioButton
             android:id="@+id/radioMale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
+            android:onClick="onRadioButtonClickedGender"
             android:text="Male" />
     </RadioGroup>
 
@@ -173,12 +190,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:background="#BBD246"
         android:onClick="OnClick"
-        android:text="Back To Screen"
+        android:text="Back"
         android:textColor="#FBFAFA"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button14"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/vegSettings" />
 
@@ -186,15 +205,17 @@
         android:id="@+id/button14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="44dp"
         android:layout_marginBottom="10dp"
         android:background="#BBD246"
+        android:onClick="OnClick"
         android:text="Apply"
         android:textColor="#FBFAFA"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioSex"
-        app:layout_constraintVertical_bias="0.48" />
+        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addressSettings"
+        app:layout_constraintVertical_bias="0.95" />
 
     <TextView
         android:id="@+id/textView"
@@ -270,6 +291,7 @@
         android:layout_marginTop="32dp"
         android:ems="10"
         android:inputType="textPostalAddress"
+        android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"

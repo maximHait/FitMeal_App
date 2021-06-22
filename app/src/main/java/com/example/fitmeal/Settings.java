@@ -31,15 +31,7 @@ public class Settings extends AppCompatActivity {
     RadioButton activityRadioButton;
     RadioGroup activityRadioGroup;
     EditText address;
-    String usernameUp;
-    String passwordUp;
-    int ageUp;
-    int heightUp;
-    int weightUp;
-    int vegUp;// 1 for male 0 for female
-    int genderUp;// 1 for male 0 for female
-    int activityLevelUp;
-    String addressUp;
+
 
 
     @Override
@@ -55,7 +47,7 @@ public class Settings extends AppCompatActivity {
         age = (EditText) findViewById(R.id.ageSettings);
         height = (EditText) findViewById(R.id.heightSettings);
         address = (EditText) findViewById(R.id.addressSettings);
-        genderRadioGroup = findViewById(R.id.radioGroupGender);
+        genderRadioGroup = findViewById(R.id.radioSex);
         vegSwitch = findViewById(R.id.vegSettings);
         activityRadioGroup = findViewById(R.id.radioGroupActivity);
 
@@ -76,14 +68,7 @@ public class Settings extends AppCompatActivity {
             genderRadioButton.setChecked(true);
         }
         veg = user.getVeg();
-        if(veg == 1)
-        {
-            vegSwitch.setChecked(true);
-        }
-        else
-        {
-            vegSwitch.setChecked(false);
-        }
+        vegSwitch.setChecked(veg == 1);
         activityLevel = user.getActivityLevel();
         switch (activityLevel)
         {
@@ -126,40 +111,10 @@ public class Settings extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.button2:
                 Intent i = new Intent(this, RecommendMeals.class);
+                i.putExtra("User", user);
                 startActivity(i);
                 break;
             case R.id.button14:
-                int radioId = genderRadioGroup.getCheckedRadioButtonId();
-                genderRadioButton = findViewById(radioId);
-                if(genderRadioButton.getId() == R.id.radioFemale)
-                {
-                    gender = 0;
-                }
-                else
-                {
-                    gender = 1;
-                }
-                int radioActivity = activityRadioGroup.getCheckedRadioButtonId();
-                activityRadioButton = findViewById(radioActivity);
-                switch (activityRadioButton.getId()) {
-                    case R.id.radioNotActive:
-                        activityLevel = 1;
-                        break;
-                    case R.id.radioSmallActivity:
-                        activityLevel = 2;
-                        break;
-                    case R.id.radioActive:
-                        activityLevel = 3;
-                        break;
-                    case R.id.radioVeryActive:
-                        activityLevel = 4;
-                        break;
-                    case R.id.radioAthlete:
-                        activityLevel = 5;
-                        break;
-                    default:
-                        break;
-                }
                 user.setname(String.valueOf(username.getText()));
                 user.setPassword(String.valueOf(password.getText()));
                 user.setWeight(Integer.parseInt(weight.getText().toString()));
@@ -173,15 +128,62 @@ public class Settings extends AppCompatActivity {
                 Dal dal = new Dal(this);
                 dal.updateUser(user);
                 break;
+            case R.id.btnLogOut:
+                Intent logout = new Intent(this, MainActivity.class);
+                startActivity(logout);
+                break;
             default:
                 break;
 
         }
     }
-    public void checkButtonGender(View view) {
-        int radioId = genderRadioGroup.getCheckedRadioButtonId();
-        genderRadioButton = findViewById(radioId);
+    public void onRadioButtonClickedGender(View view) {
+//        genderRadioGroup = findViewById(R.id.radioGroupGender);
+//        int radioId = genderRadioGroup.getCheckedRadioButtonId();
+//        genderRadioButton = findViewById(radioId);
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.radioMale:
+                if (checked)
+                    gender = 1;
+                    break;
+            case R.id.radioFemale:
+                if (checked)
+                    gender = 0;
+                    break;
+        }
     }
+    @SuppressLint("NonConstantResourceId")
+    public void onRadioButtonClickedActivity(View view)
+    {
+//        activityRadioGroup = findViewById(R.id.radioGroupActivity);
+//        int radioActivity = activityRadioGroup.getCheckedRadioButtonId();
+//        activityRadioButton = findViewById(radioActivity);
+        boolean checked = ((RadioButton) view).isChecked();
+        switch (view.getId()) {
+            case R.id.radioNotActive:
+                activityLevel = 1;
+                break;
+            case R.id.radioSmallActivity:
+                activityLevel = 2;
+                break;
+            case R.id.radioActive:
+                activityLevel = 3;
+                break;
+            case R.id.radioVeryActive:
+                activityLevel = 4;
+                break;
+            case R.id.radioAthlete:
+                activityLevel = 5;
+                break;
+            default:
+                break;
+        }
+    }
+
 //    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 //        Toast.makeText(this, "The vegeterian Switch is " + (isChecked ? "on" : "off"),
 //                Toast.LENGTH_SHORT).show();

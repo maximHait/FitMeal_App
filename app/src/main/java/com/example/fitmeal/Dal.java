@@ -15,24 +15,25 @@ public class Dal extends SQLiteAssetHelper {
         super(context, "database.db", null, 1);
     }
 
-    public void addContact(String username, String password, int age, int height, int weight, int gender, int activity, int veg, int calorie, String address)
+    public void addContact(User user)
     {
         SQLiteDatabase db = getWritableDatabase();
         String sql_INSERT = "INSERT INTO Users (username, password, age, height, weight, gender, activity, vegeterian, calorie, address) values(?,?,?,?,?,?,?,?,?,?)";
         SQLiteStatement statement = db.compileStatement(sql_INSERT);
 
-        statement.bindString(1, username);
-        statement.bindString(2, password);
-        statement.bindLong(3, age);
-        statement.bindLong(4, height);
-        statement.bindLong(5, weight);
-        statement.bindLong(6, gender);
-        statement.bindLong(7, activity);
-        statement.bindLong(8, veg);
-        statement.bindLong(9, calorie);
-        statement.bindString(10, address);
+        statement.bindString(1, user.getname());
+        statement.bindString(2, user.getPassword());
+        statement.bindLong(3, user.getAge());
+        statement.bindLong(4, user.getHeight());
+        statement.bindLong(5, user.getWeight());
+        statement.bindLong(6, user.getGender());
+        statement.bindLong(7, user.getActivityLevel());
+        statement.bindLong(8, user.getVeg());
+        statement.bindLong(9, user.getCalorieGoal());
+        statement.bindString(10, user.getAddress());
 
         statement.execute();
+        db.close();
     }
     public void addMeal(String name, String ingredients, int calories, int protein, int carbs, int fats, int vegeterian, int kosher, int price, byte[] img)
     {
@@ -52,6 +53,7 @@ public class Dal extends SQLiteAssetHelper {
         statement.bindBlob(10, img);
 
         statement.execute();
+        db.close();
     }
 
     public User getUsernameAndPassword(String name, String password)
@@ -117,7 +119,7 @@ public class Dal extends SQLiteAssetHelper {
     public void updateUser(User user)
     {
         SQLiteDatabase db = getWritableDatabase();
-        String sql_SELECT = "UPDATE Users SET username='" +user.getname()+"', password='" + user.getPassword()+"', age='" +user.getAge()+"', weight = '" + user.getWeight()+"', height = '" + user.getHeight()+"', veg = '" + user.getVeg()+"', gender = '" + user.getGender()+"', activity = '" + user.getActivityLevel()+"', address = '" + user.getAddress()+"', calorie = '" + user.getCalorieGoal()+"' WHERE username = '"+user.getname()+"' AND password='" + user.getPassword() +"'";
+        String sql_SELECT = "UPDATE Users SET username='" +user.getname()+"', password='" + user.getPassword()+"', age='" + String.valueOf(user.getAge())+"', weight = '" + String.valueOf(user.getWeight())+"', height = '" + String.valueOf(user.getHeight())+"', vegeterian = '" + String.valueOf(user.getVeg())+"', gender = '" + String.valueOf(user.getGender())+"', activity = '" + String.valueOf(user.getActivityLevel())+"', address = '" + user.getAddress()+"', calorie = '" + String.valueOf(user.getCalorieGoal())+"' WHERE username = '"+user.getname()+"' AND password='" + user.getPassword() +"'";
         Cursor cursor = db.rawQuery(sql_SELECT, null);
         cursor.close();
         db.close();

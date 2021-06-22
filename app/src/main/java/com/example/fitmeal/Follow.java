@@ -13,11 +13,13 @@ import java.io.IOException;
 
 public class  Follow extends AppCompatActivity {
     MediaPlayer mp;
+    User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_follow);
         mp = MediaPlayer.create(this, R.raw.nba);
+        user = (User)getIntent().getSerializableExtra("User");
     }
     public void btnPlay(View view)
     {
