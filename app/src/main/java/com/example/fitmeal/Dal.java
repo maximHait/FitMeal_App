@@ -37,22 +37,17 @@ public class Dal extends SQLiteAssetHelper {
         statement.execute();
         db.close();
     }
-    public void addMeal(String name, String ingredients, int calories, int protein, int carbs, int fats, int vegeterian, int kosher, int price, byte[] img)
+    public void addMeal(String name, String ingredients, int calories, int vegeterian, int price)
     {
         SQLiteDatabase db = getWritableDatabase();
-        String sql_INSERT = "INSERT INTO Meals (name, ingredients, calories, protein, carbs, fats, vegeterian, kosher, price, img) values(?,?,?,?,?,?,?,?,?,?)";
+        String sql_INSERT = "INSERT INTO Meals (name, ingredients, calories, vegeterian, price) values(?,?,?,?,?)";
         SQLiteStatement statement = db.compileStatement(sql_INSERT);
 
         statement.bindString(1, name);
         statement.bindString(2, ingredients);
         statement.bindLong(3, calories);
-        statement.bindLong(4, protein);
-        statement.bindLong(5, carbs);
-        statement.bindLong(6, fats);
         statement.bindLong(7, vegeterian);
-        statement.bindLong(8, kosher);
         statement.bindLong(9, price);
-        statement.bindBlob(10, img);
 
         statement.execute();
         db.close();
@@ -171,9 +166,9 @@ public class Dal extends SQLiteAssetHelper {
             int calories = cursor.getInt(cursor.getColumnIndex("calories"));
             int veg = cursor.getInt(cursor.getColumnIndex("vegeterian"));
             int price = cursor.getInt(cursor.getColumnIndex("price"));
-            Bitmap img = BitmapFactory.decodeByteArray(cursor.getBlob(cursor.getColumnIndex("img")), 0, cursor.getBlob(cursor.getColumnIndex("img")).length);
+            //Bitmap img = BitmapFactory.decodeByteArray(cursor.getBlob(cursor.getColumnIndex("img")), 0, cursor.getBlob(cursor.getColumnIndex("img")).length);
 
-            Meal meal = new Meal(name, ingredients, calories, veg, price, img);
+            Meal meal = new Meal(name, ingredients, calories, veg, price);
             meals.add(meal);
         }
         cursor.close();

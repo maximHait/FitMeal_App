@@ -40,7 +40,7 @@ public class RecommendMeals extends AppCompatActivity {
             //String grocery = (String) lstview1.getAdapter().getItem(position);
             Intent intent = new Intent(lstview1.getContext(), ingridiants.class);
             lstview1.getContext().startActivity(intent);
-            //Intent meals1 = new Intent(this, ingridiants.class);
+            //Intent meals1 = new Intent(this, ingrediants.class);
             //startActivity(meals1);
 
         }
@@ -80,9 +80,9 @@ public class RecommendMeals extends AppCompatActivity {
         setContentView(R.layout.activity_recommend_meals);
         user = (User)getIntent().getSerializableExtra("User");
 
-        lstview1 = findViewById(R.id.lv);
+        lstview1 = (ListView) findViewById(R.id.lv);
 
-//        getMealData();
+       //localgetMealData();
         aryMeals = dal.getMeals();
         MealAdapter ma = new MealAdapter(this, R.layout.meal, aryMeals);
 
@@ -92,18 +92,18 @@ public class RecommendMeals extends AppCompatActivity {
 
     }
 
-//    public void getMealData() {
-//        Bitmap chicken = BitmapFactory.decodeResource(getResources(), R.drawable.fitmeal);
-//        Meal m = new Meal("Meal 1", "Chicken", 550, chicken);
+//    public void localgetMealData() {
+        //Bitmap chicken = BitmapFactory.decodeResource(getResources(), R.drawable.fitmeal);
+//        Meal m = new Meal("Meal 1", "Chicken", 550, 1, 20);
 //        aryMeals.add(m);
-//        Bitmap RiceMeal = BitmapFactory.decodeResource(getResources(), R.drawable.rice_meal);
-//        Meal m1 = new Meal("Meal 2", "rice", 600, RiceMeal);
+//        //Bitmap RiceMeal = BitmapFactory.decodeResource(getResources(), R.drawable.rice_meal);
+//        Meal m1 = new Meal("Meal 2", "rice", 600, 1, 20);
 //        aryMeals.add(m1);
-//        Bitmap broccoli = BitmapFactory.decodeResource(getResources(), R.drawable.broccoli_meal);
-//        Meal m2 = new Meal("Meal 3", "broccolie", 620, broccoli);
+//        //Bitmap broccoli = BitmapFactory.decodeResource(getResources(), R.drawable.broccoli_meal);
+//        Meal m2 = new Meal("Meal 3", "broccolie", 620, 1, 20);
 //        aryMeals.add(m2);
-//        Bitmap pottato = BitmapFactory.decodeResource(getResources(), R.drawable.pottato);
-//        Meal m3 = new Meal("Meal 4", "pottato", 500, pottato);
+//        //Bitmap pottato = BitmapFactory.decodeResource(getResources(), R.drawable.pottato);
+//        Meal m3 = new Meal("Meal 4", "pottato", 500, 1, 20);
 //        aryMeals.add(m3);
 //    }
 

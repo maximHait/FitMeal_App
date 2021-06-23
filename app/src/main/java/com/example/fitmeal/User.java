@@ -35,6 +35,11 @@ public class User implements Serializable {
     }
 
     private int activityLevel;
+
+    public int[] getMeals() {
+        return this.meals;
+    }
+
     private int[] meals;
 
 
