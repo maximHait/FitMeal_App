@@ -166,9 +166,9 @@ public class Dal extends SQLiteAssetHelper {
             int calories = cursor.getInt(cursor.getColumnIndex("calories"));
             int veg = cursor.getInt(cursor.getColumnIndex("vegeterian"));
             int price = cursor.getInt(cursor.getColumnIndex("price"));
-            //Bitmap img = BitmapFactory.decodeByteArray(cursor.getBlob(cursor.getColumnIndex("img")), 0, cursor.getBlob(cursor.getColumnIndex("img")).length);
+            Bitmap img = BitmapFactory.decodeByteArray(cursor.getBlob(cursor.getColumnIndex("img")), 0, cursor.getBlob(cursor.getColumnIndex("img")).length);
 
-            Meal meal = new Meal(name, ingredients, calories, veg, price);
+            Meal meal = new Meal(name, ingredients, calories, veg, price, img);
             meals.add(meal);
         }
         cursor.close();
